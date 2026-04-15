@@ -1,7 +1,7 @@
 {
-  "buildCommand": "mkdir -p public && cp -r build/web/* public/",
-  "outputDirectory": "public",
-  "cleanUrls": true,
+  "buildCommand": "",
+  "outputDirectory": "build/web",
+  "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
     {
