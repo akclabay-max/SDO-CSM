@@ -1,5 +1,5 @@
 {
-  "buildCommand": "flutter build web --release",
+  "buildCommand": "echo 'Using pre-built web app'",
   "outputDirectory": "build/web",
   "github": {
     "silent": true
