@@ -1,13 +1,4 @@
 {
-  "buildCommand": "echo 'Using pre-built web files'",
-  "outputDirectory": "build/web",
-  "public": "build/web",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "buildCommand": "echo 'build/web' > /tmp/build_output && cp -r build/web/* .",
+  "outputDirectory": "."
 }
