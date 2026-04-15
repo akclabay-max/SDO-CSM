@@ -1,9 +1,6 @@
 {
   "buildCommand": "echo 'Using pre-built web app'",
   "outputDirectory": "build/web",
-  "github": {
-    "silent": true
-  },
   "routes": [
     {
       "src": "/(.*)",
