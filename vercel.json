@@ -1,6 +1,9 @@
 {
-  "buildCommand": "echo 'Using pre-built web app'",
+  "buildCommand": "echo 'Using pre-built web files'",
   "outputDirectory": "build/web",
+  "public": "build/web",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/(.*)",
