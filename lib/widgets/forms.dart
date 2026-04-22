@@ -269,25 +269,6 @@ class _ServiceFormState extends State<ServiceForm> {
           Expanded(
             child: SingleChildScrollView(
               controller: _scrollController,
-              child: Column(
-                children: [
-                  // Description text that now scrolls with content
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: const Text(
-                      'The Client Satisfaction Measurement (CSM) tracks the customer experience of government offices. Your feedback on your recently concluded transaction will help this office provide better service. Personal information shared will be kept confidential and you always have the option to not answer this form. ANTI-RED TAPE AUTHORITY PSA Approval No. ARTA-2242-3',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black87,
-                        height: 1.4,
-                      ),
-                    ),
-                  ),
-                  _buildStepContent(),
-                  const SizedBox(height: 16),
-                ],
-              ),
             ),
           ),
           // Navigation section with step indicator at bottom
