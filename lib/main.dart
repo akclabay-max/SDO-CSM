@@ -60,113 +60,104 @@ import 'package:flutter_death_aide/screens/admin/admin_login.dart';
     }
 
     class _MyHomePageState extends State<MyHomePage> {
-      @override
-      Widget build(BuildContext context) {
-        final screenWidth = MediaQuery.of(context).size.width;
-        
-        // Responsive logo width
-        double logoWidth;
-        if (screenWidth < 480) {
-          logoWidth = 80;
-        } else if (screenWidth < 768) {
-          logoWidth = 120;
-        } else {
-          logoWidth = 170;
-        }
-        
-        return SafeArea(
-          child: Scaffold(
-            appBar: CustomAppBar(
-              title: 'SDO BAGUIO CITY',
-              backgroundColor: Colors.white,
-              leading: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Image.asset(
-                  'assets/images/Logos.png',
-                  fit: BoxFit.contain,
-                  width: logoWidth,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.error, color: Colors.red);
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Responsive logo width
+    double logoWidth;
+    if (screenWidth < 480) {
+      logoWidth = 80;
+    } else if (screenWidth < 768) {
+      logoWidth = 120;
+    } else {
+      logoWidth = 170;
+    }
+    
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: 'SDO BAGUIO CITY',
+          backgroundColor: Colors.white,
+          leading: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Image.asset(
+              'assets/images/Logos.png',
+              fit: BoxFit.contain,
+              width: logoWidth,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(Icons.error, color: Colors.red);
+              },
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Center(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AdminLoginPage(),
+                      ),
+                    );
                   },
+                  icon: const Icon(Icons.admin_panel_settings, size: 16),
+                  label: const Text('Admin'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 90, 156, 243),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    textStyle: const TextStyle(fontSize: 12),
+                  ),
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth < 480 ? 8.0 : 16.0,
-                  ),
-                  child: Center(
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AdminLoginPage(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.admin_panel_settings),
-                      label: const Text('Admin'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 90, 156, 243),
-                        foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth < 480 ? 8.0 : 16.0,
-                          vertical: screenWidth < 480 ? 6.0 : 10.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
             ),
-          body: SimpleTiledBackground(
-            pngPath: 'assets/images/bg.png',
-            child: Column(
-              children: [
-                // Title section
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width < 480 ? 12.0 : 16.0,
-                    vertical: MediaQuery.of(context).size.width < 480 ? 12.0 : 16.0,
+          ],
+        ),
+        body: SimpleTiledBackground(
+          pngPath: 'assets/images/bg.png',
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Minimize space usage
+            children: [
+              // Title section - MINIMAL PADDING
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0), // Very tight
+                child: GradientText(
+                  'CLIENT SATISFACTION MEASUREMENT',
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 90, 156, 243),
+                      Color.fromARGB(255, 60, 120, 200),
+                      Color.fromARGB(255, 40, 90, 160),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  child: GradientText(
-                    'CLIENT SATISFACTION MEASUREMENT',
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 90, 156, 243),
-                        Color.fromARGB(255, 60, 120, 200),
-                        Color.fromARGB(255, 40, 90, 160),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width < 480 
-                        ? 20 
-                        : MediaQuery.of(context).size.width < 768
-                          ? 28
-                          : 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                // Form section - IMPORTANT: This needs to be expanded
-                    Expanded(
-                      child: ResponsiveContainer(
-                        maxWidth: 1000,
-                        child: const ServiceForm(),
-                      ),
-                    ),
-                // Footer
-                const CustomFooter(
-                  systemName: "Client Satisfaction Measurement",
+              ),
+              // Form section - takes all remaining space
+              Expanded(
+                child: ResponsiveContainer(
+                  maxWidth: 1000,
+                  padding: EdgeInsets.zero,
+                  child: const ServiceForm(),
                 ),
-              ],
-            ),
+              ),
+              // Footer
+              const CustomFooter(
+                systemName: "Client Satisfaction Measurement",
+              ),
+            ],
           ),
-          ),
-        );
-      }
-    }
+        ),
+      ),
+    );
+  }
+}
