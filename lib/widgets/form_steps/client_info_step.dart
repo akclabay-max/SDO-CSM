@@ -48,6 +48,25 @@ class _ClientInfoStepState extends State<ClientInfoStep> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // CSM Description at the top of Client Info step
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.blue[200]!),
+              ),
+              child: const Text(
+                'The Client Satisfaction Measurement (CSM) tracks the customer experience of government offices. Your feedback on your recently concluded transaction will help this office provide better service. Personal information shared will be kept confidential and you always have the option to not answer this form. ANTI-RED TAPE AUTHORITY PSA Approval No. ARTA-2242-3',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black87,
+                  height: 1.4,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             const Text(
               'Client Info',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -55,14 +74,25 @@ class _ClientInfoStepState extends State<ClientInfoStep> {
             const SizedBox(height: 20),
             TextFormField(
               controller: _ageController,
-              decoration: const InputDecoration(labelText: 'Age'),
+              decoration: const InputDecoration(
+                labelText: 'Age',
+                helperText: 'Must be greater than 12',
+              ),
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) return 'Enter age';
-                if (int.tryParse(value) == null) return 'Must be a number';
+                final int? age = int.tryParse(value);
+                if (age == null) return 'Must be a number';
+                if (age <= 12) return 'Age must be greater than 12';
+                if (age > 120) return 'Please enter a valid age';
                 return null;
               },
-              onSaved: (value) => widget.onAgeChanged(int.tryParse(value ?? '0') ?? 0),
+              onSaved: (value) {
+                final int? age = int.tryParse(value ?? '0');
+                if (age != null && age > 12) {
+                  widget.onAgeChanged(age);
+                }
+              },
             ),
             const SizedBox(height: 25),
             const Text('Sex', style: TextStyle(fontWeight: FontWeight.bold)),
