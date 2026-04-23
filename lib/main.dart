@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:flutter_death_aide/widgets/forms.dart';
-import 'package:flutter_death_aide/widgets/background.dart';
-import 'package:flutter_death_aide/widgets/footer.dart'; 
-import 'package:flutter_death_aide/widgets/appbar.dart';
-import 'package:flutter_death_aide/widgets/gradient_text.dart';
-import 'package:flutter_death_aide/widgets/responsive_container.dart';
-import 'package:flutter_death_aide/screens/admin/admin_login.dart';
+import 'package:flutter_csm/widgets/forms.dart';
+import 'package:flutter_csm/widgets/background.dart';
+import 'package:flutter_csm/widgets/footer.dart'; 
+import 'package:flutter_csm/widgets/appbar.dart';
+import 'package:flutter_csm/widgets/gradient_text.dart';
+import 'package:flutter_csm/widgets/responsive_container.dart';
+import 'package:flutter_csm/screens/admin/admin_login.dart';
 
     void main() async {
       WidgetsFlutterBinding.ensureInitialized();  // Required for async operations
